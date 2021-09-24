@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function PostForm() {
-    const url="http://localhost:3001/messages"
+    const url="https://jam-sessions-backend.herokuapp.com/messages"
     const [data, setData] = useState({
         title: "",
         owner_id: "",

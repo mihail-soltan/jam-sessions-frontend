@@ -13,7 +13,7 @@ const initialData = {
 }
 
 export default function CreateJamSession() {
-    const url="http://localhost:3001/jamsessions"
+    const url="https://jam-sessions-backend.herokuapp.com/jamsessions"
     const [data, setData] = useState(initialData)
      function submit(e){
         e.preventDefault();
