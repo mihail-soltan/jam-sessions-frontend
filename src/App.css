@@ -1,0 +1,66 @@
+body {
+  background-color: #212121;
+}
+.App {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+h1 {
+  color: #F2AA4C;
+}
+
+.rmsc {
+  --rmsc-main: #4285f4;
+  --rmsc-hover: #f1f3f5;
+  --rmsc-selected: #e2e6ea;
+  --rmsc-border: #ccc;
+  --rmsc-gray: #333 !important;
+  --rmsc-bg: #fff;
+  --rmsc-p: 10px; /* Spacing */
+  --rmsc-radius: 4px; /* Radius */
+  --rmsc-h: 38px; /* Height */
+  margin: 5px 0px !important;
+}
+.datepicker {
+  background-color: #ffffff;
+  width: 100%;
+  height: 38px;
+  font-size: 20px;
+  margin: 5px 0px;
+}
+
+.select {
+  width: 100%;
+  height: 38px;
+  padding: 10px;
+  background-color: #fff;
+  border: #ccc;
+  border-radius: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 5px 0px;
+  padding: 0px 5px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+
+.city {
+  font-size: 20px;
+}
+
+@media(max-width: 576px){
+  .App {
+    justify-content: center;
+    width: 50%;
+  }
+}

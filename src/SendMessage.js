@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function PostForm() {
+export default function SendMessage() {
     const url="https://jam-sessions-backend.herokuapp.com/messages"
     const [data, setData] = useState({
         title: "",
