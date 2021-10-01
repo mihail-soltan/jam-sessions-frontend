@@ -9,7 +9,9 @@ import cities from "./cities";
 import CreateJamSession from "./CreateJamSession";
 import Auth from "./Auth";
 import SignUp from "./SignUp";
+import FoundSessions from "./FoundSessions";
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
+const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/"
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
 
 const initialData = {
@@ -23,6 +25,7 @@ function App() {
   const [data, setData] = useState(initialData);
   const [selected, setSelected] = useState([]);
   const [options, setOptions] = useState([]);
+  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState({});
   const [value, onChange] = useState(new Date());
   useEffect(() => {
@@ -34,6 +37,15 @@ function App() {
         console.log(error);
       }
     );
+    axios.get(userAPI).then(
+      (response) => {
+        setUsers(response.data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    
   }, []);
   const searchSessions = (e) => {
     console.log("Waddup biaatch?");
@@ -45,7 +57,7 @@ function App() {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(setSearch(res.data));
       })
 
       .catch((error) => {
@@ -58,7 +70,8 @@ function App() {
         }
       });
   };
-
+  // console.log(users)
+  console.log(search)
   return (
     <>
       <Menu />
@@ -91,7 +104,7 @@ function App() {
               ) : (
                 <h1>"loading"</h1>
               )}
-              <DatePicker
+              <input type="date"
                 onChange={onChange}
                 value={value}
                 className="datepicker"
@@ -101,14 +114,15 @@ function App() {
               </button>
             </form>
           </div>
+          <FoundSessions search={search} setSearch={setSearch}/>
         </Route>
         <Route path="/createsession">
-          <CreateJamSession options={options} selected={selected} setSelected={setSelected}/>
+          <CreateJamSession options={options} users={users} selected={selected} setSelected={setSelected}/>
         </Route>
         <Route path="/auth">
           <Auth />
         </Route>
-        <Route path="/auth">
+        <Route path="/signup">
           <SignUp />
         </Route>
       </Switch>

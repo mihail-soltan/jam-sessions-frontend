@@ -1,0 +1,15 @@
+.foundSessions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.sessionCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    background-color: white;
+}
