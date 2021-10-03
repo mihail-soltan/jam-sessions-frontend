@@ -18,30 +18,46 @@ const initialData = {
   date: "",
 };
 
-const genreOptions = [
+const instruments = [
   {
-    label: "Rock",
-    value: "rock",
+    label: "electric guitar",
+    value: "electric guitar",
   },
   {
-    label: "Reggae",
-    value: "reggae",
+    label: "drums",
+    value: "drums",
   },
   {
-    label: "Funk",
-    value: "funk",
+    label: "bass guitar",
+    value: "bass guitar",
   },
   {
-    label: "Rap",
-    value: "rap",
+    label: "7-string guitar",
+    value: "7-string guitar",
   },
   {
-    label: "Jazz",
-    value: "jazz",
+    label: "keyboard",
+    value: "keyboard",
   },
   {
-    label: "Metal",
-    value: "metal",
+    label: "violin",
+    value: "violin",
+  },
+  {
+    label: "flute",
+    value: "flute",
+  },
+  {
+    label: "bagpipe",
+    value: "bagpipe",
+  },
+  {
+    label: "saxophone",
+    value: "saxophone",
+  },
+  {
+    label: "talharpa",
+    value: "talharpa",
   },
 ];
 
@@ -89,6 +105,8 @@ export default function CreateJamSession({ options, users }) {
     };
     // console.log(e.target);
     setData(newData);
+    console.log(newData);
+    console.log(e.target);
   }
 
   function handleArray(name, value) {
@@ -101,7 +119,7 @@ export default function CreateJamSession({ options, users }) {
   }
   // console.log(options)
   // console.log(options)
-  console.log(data)
+  // console.log(data)
   return (
     <div class="createjamsession">
       <form onSubmit={submit}>
@@ -160,39 +178,39 @@ export default function CreateJamSession({ options, users }) {
         {/* <input type="checkbox" onChange={handle} name="genres" value="Rock" />
         <label for="genres"> Rock </label>
         <br /> */}
-        <input
+        <textarea
           className="sessionForm"
           onChange={handle}
           name="description"
           id="description"
           placeholder="description"
           type="text"
-        ></input>
+          rows="50"
+          cols="40"
+        ></textarea>
         <select
           class="select"
           onChange={handle}
           name="experience"
           id="experience"
           placeholder="experience"
-        >
+        > <option selected>choose your level</option>
           <option value="beginner">beginner</option>
           <option value="intermediate">intermediate</option>
           <option value="advanced">advanced</option>
         </select>
-        <select
-          class="select"
+        <MultiSelect
+          options={instruments}
           onChange={handleArray}
-          name="instruments"
-          id="instruments"
-          placeholder="instruments"
-          multiple
-        >
-          <option value="Electric Guitar">Electric Guitar</option>
+          value={data.instruments}
+          onChange={(value) => handleArray("instruments", value)}
+        />
+          {/* <option value="Electric Guitar">Electric Guitar</option>
           <option value="Bass Guitar">Bass Guitar</option>
           <option value="Drums">Drums</option>
           <option value="Vocals">Vocals</option>
           <option value="Keyboard">Keyboard</option>
-        </select>
+        </select> */}
         <input
           className="sessionForm"
           onChange={handle}

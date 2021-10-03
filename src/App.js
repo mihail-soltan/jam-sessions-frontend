@@ -10,6 +10,7 @@ import CreateJamSession from "./CreateJamSession";
 import Auth from "./Auth";
 import SignUp from "./SignUp";
 import FoundSessions from "./FoundSessions";
+import SessionPage from "./SessionPage";
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
 const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/"
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
@@ -26,8 +27,9 @@ function App() {
   const [selected, setSelected] = useState([]);
   const [options, setOptions] = useState([]);
   const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState({});
-  const [value, onChange] = useState(new Date());
+  let [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState([]);
+  const [fullDate, setFullDate] = useState(new Date());
   useEffect(() => {
     axios.get(genreAPI).then(
       (response) => {
@@ -48,16 +50,17 @@ function App() {
     
   }, []);
   const searchSessions = (e) => {
-    console.log("Waddup biaatch?");
+    // console.log("Waddup biaatch?");
+    setLoading(true)
     e.preventDefault();
     axios
       .get(jamSessionAPI, {
-        params: {
-          _id: "614e19ec4e5d36f9261217fb",
-        },
+        // params: {
+        //   _id: "614e19ec4e5d36f9261217fb",
+        // },
       })
       .then((res) => {
-        console.log(setSearch(res.data));
+       setSearch(res.data);
       })
 
       .catch((error) => {
@@ -70,8 +73,12 @@ function App() {
         }
       });
   };
+  const dateTest = (e) =>{
+    setFullDate(e.target.value)
+  }
   // console.log(users)
-  console.log(search)
+  // console.log(fullDate)
+  // console.log(search)
   return (
     <>
       <Menu />
@@ -105,8 +112,8 @@ function App() {
                 <h1>"loading"</h1>
               )}
               <input type="date"
-                onChange={onChange}
-                value={value}
+                onChange={dateTest}
+                value={fullDate}
                 className="datepicker"
               />
               <button className="select" onClick={searchSessions}>
@@ -114,16 +121,19 @@ function App() {
               </button>
             </form>
           </div>
-          <FoundSessions search={search} setSearch={setSearch}/>
+          <FoundSessions search={search} setSearch={setSearch} loading={loading}/>
         </Route>
         <Route path="/createsession">
-          <CreateJamSession options={options} users={users} selected={selected} setSelected={setSelected}/>
+          <CreateJamSession options={options} users={users} selected={selected} fullDate={fullDate} setSelected={setSelected}/>
         </Route>
         <Route path="/auth">
           <Auth />
         </Route>
         <Route path="/signup">
           <SignUp />
+        </Route>
+        <Route path="/jamsession/:id">
+          <SessionPage loading={loading} search={search}/>
         </Route>
       </Switch>
     </>
