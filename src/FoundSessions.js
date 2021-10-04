@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { css } from "@emotion/react";
 import SyncLoader from "react-spinners/SyncLoader";
 
-export default function FoundSessions({ search, setSearch, loading, fullDate }) {
+export default function FoundSessions({ search, setSearch, loading, fullDate, data }) {
 
   const [color, setColor] = useState("#F2AA4C");
   const override = css`
@@ -23,11 +23,10 @@ export default function FoundSessions({ search, setSearch, loading, fullDate }) 
       ).toString(16)
     );
   }
-
   return (
     <div className="foundSessions">
       {search.length ? (
-        search.map((session) => (
+        search.filter((s) => s.date === data.date.toISOString()).map((session) => (
           <div className="sessionCard">
             <div className="sessionTitle">
               {" "}
@@ -37,8 +36,8 @@ export default function FoundSessions({ search, setSearch, loading, fullDate }) 
               <h5 key={uuidv4()}>
                 {new Date(session.date).toString().substring(0, 15)}
               </h5>
+              
             </div>
-
             <div className="sessionMain">
               <h4 key={uuidv4()}>{session.description} </h4>
             </div>
@@ -59,7 +58,7 @@ export default function FoundSessions({ search, setSearch, loading, fullDate }) 
               </Link>
             </div>
           </div>
-        )).filter((q)=> q.date === fullDate)
+        ))
       ) : (
         <SyncLoader color={color} loading={loading} css={override} size={30} />
       )}

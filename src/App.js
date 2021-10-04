@@ -50,7 +50,6 @@ function App() {
     
   }, []);
   const searchSessions = (e) => {
-    // console.log("Waddup biaatch?");
     setLoading(true)
     e.preventDefault();
     axios
@@ -73,12 +72,18 @@ function App() {
         }
       });
   };
-  const dateTest = (e) =>{
-    setFullDate(e.target.value)
+
+  function handle(e) {
+    const { name, value } = e.target;
+    const newData = {
+      ...data,
+      [name]: new Date(value),
+    };
+    console.log(e.target);
+    setData(newData);
   }
-  // console.log(users)
-  // console.log(fullDate)
-  // console.log(search)
+  console.log(data.date);
+
   return (
     <>
       <Menu />
@@ -112,8 +117,9 @@ function App() {
                 <h1>"loading"</h1>
               )}
               <input type="date"
-                onChange={dateTest}
-                value={fullDate}
+                onChange={handle}
+                name="date"
+                id="date"
                 className="datepicker"
               />
               <button className="select" onClick={searchSessions}>
@@ -121,7 +127,7 @@ function App() {
               </button>
             </form>
           </div>
-          <FoundSessions search={search} setSearch={setSearch} loading={loading}/>
+          <FoundSessions search={search} setSearch={setSearch} loading={loading} data={data}/>
         </Route>
         <Route path="/createsession">
           <CreateJamSession options={options} users={users} selected={selected} fullDate={fullDate} setSelected={setSelected}/>
