@@ -60,7 +60,7 @@ const instruments = [
     value: "talharpa",
   },
 ];
-
+export {instruments}
 export default function CreateJamSession({ options, users }) {
   const url = "https://jam-sessions-backend.herokuapp.com/jamsessions";
   const [data, setData] = useState(initialData);

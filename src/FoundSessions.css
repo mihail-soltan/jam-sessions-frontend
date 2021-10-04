@@ -13,10 +13,12 @@
     justify-content: flex-start;
     width: 600px;
     background-color: #ffffff;
-    border: 3px dotted black;
+    border: 5px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #F2AA4C, #4CF257, #4C94F2, #F24CE7, #F2AA4C);
     margin: 5px 0px;
     padding: 10px;
-    background-color: rgb(196, 45, 210, 0.3);
+    /* background-color: rgb(196, 45, 210, 0.3); */
 }
 
 .sessionTitle {

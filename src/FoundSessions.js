@@ -26,7 +26,7 @@ export default function FoundSessions({ search, setSearch, loading, fullDate, da
   return (
     <div className="foundSessions">
       {search.length ? (
-        search.filter((s) => s.date === data.date.toISOString()).map((session) => (
+        search.filter((s) => s.date === data.date.toISOString() || s.city.includes(data.city) || JSON.stringify(s.genres) === JSON.stringify(data.genres) || s.experience === data.experience).map((session) => (
           <div className="sessionCard">
             <div className="sessionTitle">
               {" "}

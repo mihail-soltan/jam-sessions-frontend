@@ -2,7 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { Switch, Route } from "react-router-dom";
-import DatePicker from "react-date-picker";
 import Menu from "./Menu";
 import axios from "axios";
 import cities from "./cities";
@@ -12,13 +11,13 @@ import SignUp from "./SignUp";
 import FoundSessions from "./FoundSessions";
 import SessionPage from "./SessionPage";
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
-const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/"
+const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/";
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
 
 const initialData = {
   city: "",
   experience: "[]",
-  genre: [],
+  genres: [],
   date: "",
 };
 
@@ -47,10 +46,9 @@ function App() {
         console.log(error);
       }
     );
-    
   }, []);
   const searchSessions = (e) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     axios
       .get(jamSessionAPI, {
@@ -59,7 +57,7 @@ function App() {
         // },
       })
       .then((res) => {
-       setSearch(res.data);
+        setSearch(res.data);
       })
 
       .catch((error) => {
@@ -73,7 +71,7 @@ function App() {
       });
   };
 
-  function handle(e) {
+  function handleDate(e) {
     const { name, value } = e.target;
     const newData = {
       ...data,
@@ -82,7 +80,24 @@ function App() {
     console.log(e.target);
     setData(newData);
   }
-  console.log(data.date);
+  function handle(e) {
+    const { name, value } = e.target;
+    const newData = {
+      ...data,
+      [name]: value,
+    };
+    console.log(e.target);
+    setData(newData);
+  }
+  function handleArray(name, value) {
+    const newData = {
+      ...data,
+      [name]: value,
+    };
+
+    setData(newData);
+  }
+  console.log(data);
 
   return (
     <>
@@ -92,7 +107,7 @@ function App() {
           <div className="App">
             <h1>Find a Jam Session</h1>
             <form className="form">
-              <select className="select">
+              <select onChange={handle} name="city" className="select">
                 <option className="city" selected>
                   Choose City
                 </option>
@@ -100,7 +115,7 @@ function App() {
                   <option className="city">{city.name}</option>
                 ))}
               </select>
-              <select className="select">
+              <select onChange={handle} name="experience" className="select">
                 <option selected>Choose your level</option>
                 <option>beginner</option>
                 <option>intermediate</option>
@@ -109,15 +124,16 @@ function App() {
               {options ? (
                 <MultiSelect
                   options={options}
-                  value={selected}
-                  onChange={setSelected}
+                  value={data.genres}
+                  onChange={(value) => handleArray("genres", value)}
                   labelledBy="Select"
                 />
               ) : (
                 <h1>"loading"</h1>
               )}
-              <input type="date"
-                onChange={handle}
+              <input
+                type="date"
+                onChange={handleDate}
                 name="date"
                 id="date"
                 className="datepicker"
@@ -127,10 +143,21 @@ function App() {
               </button>
             </form>
           </div>
-          <FoundSessions search={search} setSearch={setSearch} loading={loading} data={data}/>
+          <FoundSessions
+            search={search}
+            setSearch={setSearch}
+            loading={loading}
+            data={data}
+          />
         </Route>
         <Route path="/createsession">
-          <CreateJamSession options={options} users={users} selected={selected} fullDate={fullDate} setSelected={setSelected}/>
+          <CreateJamSession
+            options={options}
+            users={users}
+            selected={selected}
+            fullDate={fullDate}
+            setSelected={setSelected}
+          />
         </Route>
         <Route path="/auth">
           <Auth />
@@ -139,7 +166,7 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/jamsession/:id">
-          <SessionPage loading={loading} search={search}/>
+          <SessionPage loading={loading} search={search} />
         </Route>
       </Switch>
     </>
