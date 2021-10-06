@@ -61,17 +61,16 @@ const instruments = [
   },
 ];
 export {instruments}
-export default function CreateJamSession({ options, users }) {
+export default function CreateJamSession({ options, users, me }) {
   const url = "https://jam-sessions-backend.herokuapp.com/jamsessions";
   const [data, setData] = useState(initialData);
-   
   function submit(e) {
     e.preventDefault();
     axios
       .post(url, {
         name: data.name,
         city: data.city,
-        createdBy: data.createdBy,
+        createdBy: me[0].data._id,
         members: data.members,
         genres: data.genres,
         description: data.description,
@@ -128,14 +127,7 @@ export default function CreateJamSession({ options, users }) {
           placeholder="name"
           type="text"
         ></input>
-        <input
-          className="sessionForm"
-          onChange={handle}
-          name="createdBy"
-          id="createdBy"
-          placeholder="createdBy"
-          type="text"
-        ></input>
+      
         <input
           className="sessionForm"
           onChange={handle}

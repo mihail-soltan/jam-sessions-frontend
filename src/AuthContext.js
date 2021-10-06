@@ -15,7 +15,7 @@ const AuthContextProvider = ({ children }) => {
     return authToken ? true : false;
   }
 
-  console.log(authToken)
+  // console.log(authToken)
   const setCookieOrError = (res) => {
     const { status, data } = res;
     if (status === 200) {

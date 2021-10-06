@@ -14,19 +14,21 @@ import ProtectedRoute from "./ProtectedRoute";
 import Profile from "./Profile";
 import Tickets from "./Tickets";
 import { AuthContext } from './AuthContext';
+import UserSessions from "./UserSessions";
 
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
 const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/";
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
 const ticketAPI =
   `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode=DE&apikey=${process.env.REACT_APP_TICKET_API}`;
+const myProfile = "https://jam-sessions-backend.herokuapp.com/api/users/me";
 const initialData = {
   city: "",
   experience: "[]",
   genres: [],
   date: "",
 };
-console.log(ticketAPI)
+
 function App() {
   const [data, setData] = useState(initialData);
   const [selected, setSelected] = useState([]);
@@ -36,6 +38,8 @@ function App() {
   let [loading, setLoading] = useState(false);
   const [search, setSearch] = useState([]);
   const [fullDate, setFullDate] = useState(new Date());
+  const [me, setMe] = useState([]);
+  const { authToken } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get(genreAPI).then(
@@ -62,6 +66,21 @@ function App() {
         console.log(error);
       }
     );
+    axios
+    .get(myProfile, { headers: { Authorization: `Bearer ${authToken}` } })
+    .then((res) => {
+      setMe([res.data]);
+    })
+
+    .catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+      } else if (error.request) {
+        console.log(error.request);
+      } else if (error.message) {
+        console.log(error.message);
+      }
+    });
   }, []);
 
   const searchSessions = (e) => {
@@ -178,6 +197,7 @@ function App() {
             selected={selected}
             fullDate={fullDate}
             setSelected={setSelected}
+            me={me}
           />
         </Route>
         <ProtectedRoute component={Profile} path="/profile" />
@@ -190,6 +210,9 @@ function App() {
         </Route>
         <Route path="/jamsession/:id">
           <SessionPage loading={loading} search={search} />
+        </Route>
+        <Route path="/profile/sessions">
+          <UserSessions loading={loading} search={search} />
         </Route>
       </Switch>
     </>

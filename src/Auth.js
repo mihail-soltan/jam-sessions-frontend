@@ -14,7 +14,7 @@ export default function Auth() {
   const { login, isLoggedIn } = useContext(AuthContext)
   const [ formData, handleChange ] = useFormData(initialFormData)
 
-  isLoggedIn ?  <Redirect to="/"/> : <Redirect to="/"/>  
+  isLoggedIn ?  <Redirect to="/profile"/> : <Redirect to="/login" />
 
   return (
       <div className="auth">

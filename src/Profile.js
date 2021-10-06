@@ -1,10 +1,16 @@
 import "./Profile.css";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import UserSessions from "./UserSessions";
 import axios from "axios";
-export default function Profile() {
+export default function Profile({search}) {
   const myProfile = "https://jam-sessions-backend.herokuapp.com/api/users/me";
+  const sessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
+
   const [me, setMe] = useState([]);
+  const [mySessions, setMySessions] = useState([]);
   const { authToken } = useContext(AuthContext);
   useEffect(() => {
     axios
@@ -22,18 +28,55 @@ export default function Profile() {
           console.log(error.message);
         }
       });
-  }, []);
-  console.log(me)
-  return (
+      axios
+      .get(sessionAPI, { })
+      .then((res) => {
+        setMySessions(res.data);
+      })
+
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
       
+  }, []);
+  console.log(me);
+  return (
     <div className="profile">
-        {me.length ? ( me.map((e)=>
-            <>
-      <img src={e.data.avatar}></img>
-      <h1>{e.data.firstName} {e.data.lastName}</h1>
-      </>))
-    :<h1>Access Denied</h1>
-    }
+      {me.length && mySessions.length ? (
+        me.map((e) => (
+          <>
+          <div className="userData">
+            <img src={e.data.avatar}></img>
+            <h1>
+              {e.data.firstName} {e.data.lastName}
+            </h1>
+            </div>
+            <div className="userTabs">
+            <Tabs>
+              <TabList>
+                <Tab>My Sessions</Tab>
+                <Tab>Messages</Tab>
+              </TabList>
+
+              <TabPanel>
+               <UserSessions me={me} mySessions={mySessions}/>
+              </TabPanel>
+              <TabPanel>
+                <h2>Any content 2</h2>
+              </TabPanel>
+            </Tabs>
+            </div>
+          </>
+        ))
+      ) : (
+        <h1>Access Denied</h1>
+      )}
     </div>
   );
 }
