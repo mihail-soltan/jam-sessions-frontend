@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
@@ -10,25 +10,33 @@ import Auth from "./Auth";
 import SignUp from "./SignUp";
 import FoundSessions from "./FoundSessions";
 import SessionPage from "./SessionPage";
+import ProtectedRoute from "./ProtectedRoute";
+import Profile from "./Profile";
+import Tickets from "./Tickets";
+import { AuthContext } from './AuthContext';
+
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
 const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/";
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
-
+const ticketAPI =
+  `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode=DE&apikey=${process.env.REACT_APP_TICKET_API}`;
 const initialData = {
   city: "",
   experience: "[]",
   genres: [],
   date: "",
 };
-
+console.log(ticketAPI)
 function App() {
   const [data, setData] = useState(initialData);
   const [selected, setSelected] = useState([]);
   const [options, setOptions] = useState([]);
   const [users, setUsers] = useState([]);
+  const [tickets, setTickets] = useState([]);
   let [loading, setLoading] = useState(false);
   const [search, setSearch] = useState([]);
   const [fullDate, setFullDate] = useState(new Date());
+
   useEffect(() => {
     axios.get(genreAPI).then(
       (response) => {
@@ -46,7 +54,16 @@ function App() {
         console.log(error);
       }
     );
+    axios.get(ticketAPI).then(
+      (response) => {
+        setTickets([response.data]);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }, []);
+
   const searchSessions = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -97,7 +114,7 @@ function App() {
 
     setData(newData);
   }
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
@@ -105,32 +122,32 @@ function App() {
       <Switch>
         <Route exact path="/">
           <div className="App">
-            <h1>Find a Jam Session</h1>
             <form className="form">
+              <h1>Search Sessions</h1>
               <select onChange={handle} name="city" className="select">
-                <option className="city" selected>
+                <option className="city" defaultValue>
                   Choose City
                 </option>
                 {cities.map((city) => (
                   <option className="city">{city.name}</option>
-                ))}
+                  ))}
               </select>
               <select onChange={handle} name="experience" className="select">
-                <option selected>Choose your level</option>
+                <option defaultValue>Choose your level</option>
                 <option>beginner</option>
                 <option>intermediate</option>
                 <option>advanced</option>
               </select>
               {options ? (
                 <MultiSelect
-                  options={options}
-                  value={data.genres}
-                  onChange={(value) => handleArray("genres", value)}
-                  labelledBy="Select"
+                options={options}
+                value={data.genres}
+                onChange={(value) => handleArray("genres", value)}
+                labelledBy="Select"
                 />
-              ) : (
-                <h1>"loading"</h1>
-              )}
+                ) : (
+                  <h1>"loading"</h1>
+                  )}
               <input
                 type="date"
                 onChange={handleDate}
@@ -142,13 +159,17 @@ function App() {
                 Search
               </button>
             </form>
+                  <FoundSessions
+              search={search}
+              setSearch={setSearch}
+              loading={loading}
+              data={data}
+            />
+                  <Tickets tickets={tickets} setTickets={setTickets} />
           </div>
-          <FoundSessions
-            search={search}
-            setSearch={setSearch}
-            loading={loading}
-            data={data}
-          />
+          <div className="results">
+            
+          </div>
         </Route>
         <Route path="/createsession">
           <CreateJamSession
@@ -159,9 +180,11 @@ function App() {
             setSelected={setSelected}
           />
         </Route>
-        <Route path="/auth">
+        <ProtectedRoute component={Profile} path="/profile" />
+        <Route path="/login">
           <Auth />
         </Route>
+        <Route path="/logout"></Route>
         <Route path="/signup">
           <SignUp />
         </Route>

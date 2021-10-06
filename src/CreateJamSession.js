@@ -74,7 +74,6 @@ export default function CreateJamSession({ options, users }) {
         createdBy: data.createdBy,
         members: data.members,
         genres: data.genres,
-        // genres: data.genres.map(({ _id }) => _id),
         description: data.description,
         experience: data.experience,
         instruments: data.instruments,
@@ -103,7 +102,6 @@ export default function CreateJamSession({ options, users }) {
       ...data,
       [name]: value,
     };
-    // console.log(e.target);
     setData(newData);
     console.log(newData);
     console.log(e.target);
@@ -117,11 +115,10 @@ export default function CreateJamSession({ options, users }) {
 
     setData(newData);
   }
-  // console.log(options)
-  // console.log(options)
-  // console.log(data)
+
   return (
-    <div class="createjamsession">
+    <div className="createjamsession">
+      <h1>Create a new jam session</h1>
       <form onSubmit={submit}>
         <input
           className="sessionForm"
@@ -160,24 +157,14 @@ export default function CreateJamSession({ options, users }) {
             <option className="city">{city.name}</option>
           ))}
         </select>
-        <MultiSelect 
-          options={users}
-          value={data.members}
-          onChange={(value) => handleArray("members", value)}
-          labelledBy="Select"/>
+        
         <MultiSelect
           options={options}
           value={data.genres}
           onChange={(value) => handleArray("genres", value)}
           labelledBy="Select"
         />
-        {/* <input type="checkbox" onChange={handle} name="genres" value="Metal" />
-        <label for="genres"> Metal</label>
-
-        <br /> */}
-        {/* <input type="checkbox" onChange={handle} name="genres" value="Rock" />
-        <label for="genres"> Rock </label>
-        <br /> */}
+       
         <textarea
           className="sessionForm"
           onChange={handle}
@@ -205,12 +192,7 @@ export default function CreateJamSession({ options, users }) {
           value={data.instruments}
           onChange={(value) => handleArray("instruments", value)}
         />
-          {/* <option value="Electric Guitar">Electric Guitar</option>
-          <option value="Bass Guitar">Bass Guitar</option>
-          <option value="Drums">Drums</option>
-          <option value="Vocals">Vocals</option>
-          <option value="Keyboard">Keyboard</option>
-        </select> */}
+      
         <input
           className="sessionForm"
           onChange={handle}
