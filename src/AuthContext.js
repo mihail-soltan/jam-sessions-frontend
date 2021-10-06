@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const AuthContext = createContext();
 
-const API_URL = 'http://jam-sessions-backend.herokuapp.com/api/users';
+const API_URL = 'https://jam-sessions-backend.herokuapp.com/api/users';
 const userToken = cookies.get('token');
 
 const AuthContextProvider = ({ children }) => {
