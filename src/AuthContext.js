@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import cookies from 'js-cookie';
 import axios from 'axios';
-
+import { Redirect } from 'react-router';
 export const AuthContext = createContext();
 
 const API_URL = 'https://jam-sessions-backend.herokuapp.com/api/users';
@@ -46,6 +46,7 @@ const AuthContextProvider = ({ children }) => {
   const logout = () => {
     cookies.remove('token');
     setAuthToken('');
+    if (!isLoggedIn()) return <Redirect to="/"/>
   }
 
   return (

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AuthContext } from './AuthContext';
+import { Redirect } from "react-router";
 const COLORS = {
   primaryDark: "#101820FF",
   primaryLight: "#F2AA4C",
@@ -116,7 +117,8 @@ const ItemLink = styled(NavLink)`
 function HamburgerMenu() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
-  const {logout, isLoggedOut} = useContext(AuthContext)
+  const {logout, isLoggedIn} = useContext(AuthContext)
+   
   return (
     <>
       <MenuLabel htmlFor="navi-toggle" onClick={handleClick}>
@@ -150,7 +152,8 @@ function HamburgerMenu() {
             <ItemLink onClick={handleClick} to="/login">
               Sign In
             </ItemLink>
-            <ItemLink onClick={logout} to="/logout">
+    
+            <ItemLink onClick={logout} to="/">
               Log Out
             </ItemLink> 
           </li>

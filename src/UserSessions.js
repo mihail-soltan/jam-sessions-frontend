@@ -32,7 +32,7 @@ export default function UserSessions({ me, mySessions }) {
   `;
   return mySessions ? (
     <>
-      <div className="sessionPage">
+      <div>
         {filteredSession.map((s) => (
           <>
             {" "}

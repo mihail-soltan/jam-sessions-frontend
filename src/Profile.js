@@ -60,15 +60,15 @@ export default function Profile({search}) {
             <div className="userTabs">
             <Tabs>
               <TabList>
-                <Tab>My Sessions</Tab>
-                <Tab>Messages</Tab>
+                <Tab style={{color:"#EC8D11"}}>My Sessions</Tab>
+                <Tab style={{color:"#EC8D11"}}>Conversations</Tab>
               </TabList>
 
               <TabPanel>
                <UserSessions me={me} mySessions={mySessions}/>
               </TabPanel>
               <TabPanel>
-                <h2>Any content 2</h2>
+              <UserSessions me={me} mySessions={mySessions}/>
               </TabPanel>
             </Tabs>
             </div>

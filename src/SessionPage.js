@@ -30,6 +30,7 @@ export default function SessionPage({ loading, search, newData }) {
     margin: 0 auto;
     border-color: red;
   `;
+
   return search ? (
     <>
       <div className="sessionPage">
@@ -49,6 +50,7 @@ export default function SessionPage({ loading, search, newData }) {
               <div className="sessionMain">
                 <h4 key={uuidv4()}>{s.description} </h4>
               </div>
+            
               <h6 key={uuidv4()}>{s.street} </h6>
               <h6 key={uuidv4()}>{s.plz} </h6>
               <div className="cardBottom">

@@ -11,10 +11,10 @@ const initialFormData = {
 
 export default function Auth() {
   
-  const { login, isLoggedIn } = useContext(AuthContext)
+  const { login, isLoggedIn, authToken } = useContext(AuthContext)
   const [ formData, handleChange ] = useFormData(initialFormData)
 
-  isLoggedIn ?  <Redirect to="/profile"/> : <Redirect to="/login" />
+  if (isLoggedIn()) return <Redirect to="/profile"/> 
 
   return (
       <div className="auth">
