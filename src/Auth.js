@@ -22,7 +22,7 @@ export default function Auth() {
         <div>
           <input onChange={handleChange} className="loginform" type="text"  name="email" placeholder="email"></input>
           <input onChange={handleChange} className="loginform" type="password" name="password" minLength="8" required ></input>
-          <button className="loginform" onClick={() => login(formData)}>
+          <button className="loginform login"  onClick={() => login(formData)}>
             Login
           </button>
          </div>

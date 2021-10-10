@@ -129,14 +129,14 @@ export default function CreateJamSession({ options, users, me }) {
         ></input>
       
         <input
-          className="sessionForm"
+          className="sessionForm2"
           onChange={handle}
           name="street"
           placeholder="Street/House Nr."
           type="text"
         ></input>
         <input
-        className="sessionForm"
+        className="sessionForm2"
         onChange={handle}
         name="plz"
         placeholder="PLZ"

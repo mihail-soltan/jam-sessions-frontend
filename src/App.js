@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { Switch, Route } from "react-router-dom";
 import Menu from "./Menu";
+import Footer from "./Footer";
 import axios from "axios";
 import cities from "./cities";
 import CreateJamSession from "./CreateJamSession";
@@ -13,14 +14,15 @@ import SessionPage from "./SessionPage";
 import ProtectedRoute from "./ProtectedRoute";
 import Profile from "./Profile";
 import Tickets from "./Tickets";
-import { AuthContext } from './AuthContext';
+import { AuthContext } from "./AuthContext";
 import UserSessions from "./UserSessions";
-
+import { AiFillTwitterSquare } from "react-icons/ai";
+import { FaTwitch } from "react-icons/fa";
+import { BsReddit } from "react-icons/bs";
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
 const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/";
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
-const ticketAPI =
-  `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode=DE&apikey=${process.env.REACT_APP_TICKET_API}`;
+const ticketAPI = `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode=DE&apikey=${process.env.REACT_APP_TICKET_API}`;
 const myProfile = "https://jam-sessions-backend.herokuapp.com/api/users/me";
 const initialData = {
   city: "",
@@ -67,31 +69,27 @@ function App() {
       }
     );
     axios
-    .get(myProfile, { headers: { Authorization: `Bearer ${authToken}` } })
-    .then((res) => {
-      setMe([res.data]);
-    })
+      .get(myProfile, { headers: { Authorization: `Bearer ${authToken}` } })
+      .then((res) => {
+        setMe([res.data]);
+      })
 
-    .catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-      } else if (error.request) {
-        console.log(error.request);
-      } else if (error.message) {
-        console.log(error.message);
-      }
-    });
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        } else if (error.request) {
+          console.log(error.request);
+        } else if (error.message) {
+          console.log(error.message);
+        }
+      });
   }, []);
 
   const searchSessions = (e) => {
     setLoading(true);
     e.preventDefault();
     axios
-      .get(jamSessionAPI, {
-        // params: {
-        //   _id: "614e19ec4e5d36f9261217fb",
-        // },
-      })
+      .get(jamSessionAPI)
       .then((res) => {
         setSearch(res.data);
       })
@@ -133,7 +131,6 @@ function App() {
 
     setData(newData);
   }
-  // console.log(data);
 
   return (
     <>
@@ -149,7 +146,7 @@ function App() {
                 </option>
                 {cities.map((city) => (
                   <option className="city">{city.name}</option>
-                  ))}
+                ))}
               </select>
               <select onChange={handle} name="experience" className="select">
                 <option defaultValue>Choose your level</option>
@@ -159,14 +156,14 @@ function App() {
               </select>
               {options ? (
                 <MultiSelect
-                options={options}
-                value={data.genres}
-                onChange={(value) => handleArray("genres", value)}
-                labelledBy="Select"
+                  options={options}
+                  value={data.genres}
+                  onChange={(value) => handleArray("genres", value)}
+                  labelledBy="Select"
                 />
-                ) : (
-                  <h1>"loading"</h1>
-                  )}
+              ) : (
+                <h1>"loading"</h1>
+              )}
               <input
                 type="date"
                 onChange={handleDate}
@@ -178,16 +175,13 @@ function App() {
                 Search
               </button>
             </form>
-                  <FoundSessions
+            <FoundSessions
               search={search}
               setSearch={setSearch}
               loading={loading}
               data={data}
             />
-                  <Tickets tickets={tickets} setTickets={setTickets} />
-          </div>
-          <div className="results">
-            
+            <Tickets tickets={tickets} setTickets={setTickets} />
           </div>
         </Route>
         <Route path="/createsession">
@@ -215,6 +209,27 @@ function App() {
           <UserSessions loading={loading} search={search} />
         </Route>
       </Switch>
+      <Footer>
+        <div className="footer">
+          <h5>Contact</h5>
+          <div className="footerContact">
+            <h6>Kurze Str. 10</h6>
+            <h6>13585, Berlin</h6>
+            <h6>mihail.soltan@protonmail.ch</h6>
+          </div>
+        </div>
+        <div className="follow">
+          <h5>Follow Us:</h5>
+          <div className="footerIcons">
+            <AiFillTwitterSquare style={{ width: "2em", height: "2em", margin: "5px" }} />
+            <FaTwitch style={{ width: "2em", height: "2em", margin: "5px" }} />
+            <BsReddit style={{ width: "2em", height: "2em", margin: "5px" }} />
+          </div>
+        </div>
+        <div className="footer">
+          <h5>NEWSLETTER</h5>
+        </div>
+      </Footer>
     </>
   );
 }

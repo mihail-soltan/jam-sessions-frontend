@@ -41,7 +41,7 @@ export default function Tickets({ tickets }) {
         </>
         ))
       ) : (
-        <h1>NOT LMAO</h1>
+        <SyncLoader />
       )}
     </div>
   );

@@ -10,12 +10,11 @@ const userToken = cookies.get('token');
 const AuthContextProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(userToken);
   const [error, setError] = useState(false);
-
+  const [click, setClick] = useState(false);
   const isLoggedIn = () => {
     return authToken ? true : false;
   }
 
-  // console.log(authToken)
   const setCookieOrError = (res) => {
     const { status, data } = res;
     if (status === 200) {
@@ -46,7 +45,6 @@ const AuthContextProvider = ({ children }) => {
   const logout = () => {
     cookies.remove('token');
     setAuthToken('');
-    if (!isLoggedIn()) return <Redirect to="/"/>
   }
 
   return (

@@ -9,7 +9,33 @@ body {
   flex-direction: row;
   /* height: 50vh; */
 }
-
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.follow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.follow h5 {
+  margin:0px;
+}
+.footerIcons {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.footer h5{
+  margin: 0px;
+}
+.footer h6 {
+  margin: 0px;
+}
 h1 {
   color: #F2AA4C;
 }

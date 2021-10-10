@@ -12,8 +12,20 @@
     background-color: #fff;
     border: #ccc;
     border-radius: 4px;
-    margin: 5px 0px;
-    padding: 5px 0px;
+    margin: 5px; 
+    padding: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: #ffffff;
+}
+.sessionForm2 {
+    width: 50%;
+    height: 38px;
+    background-color: #fff;
+    border: #ccc;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
     font-size: 16px;
     color: #333;
     background-color: #ffffff;
