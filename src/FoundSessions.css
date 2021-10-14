@@ -28,14 +28,14 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 600px;
-    background: radial-gradient(circle, white, gray);;
-    border: 5px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to right, #F2AA4C, #4CF257, #4C94F2, #F24CE7, #F2AA4C);
-    margin: 5px 0px;
+    width: 35vw;
+    background: #FDE5C8;
+    border: 5px solid #353535;
+    border-radius: 4px;
+    /* border-image-slice: 1; */
+    /* border-image-source: linear-gradient(to right, #F2AA4C, #4CF257, #4C94F2, #F24CE7, #F2AA4C); */
+    margin: 5px 10px;
     padding: 10px;
-    /* background-color: rgb(196, 45, 210, 0.3); */
 }
 
 .sessionTitle {
@@ -56,7 +56,7 @@
 }
 .cardBottom {
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
     width: 100%;
@@ -91,7 +91,11 @@
     z-index: 0;
     margin: 5px;
 }
-
+.details {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
 .glow-on-hover:before {
     content: '';
     background: linear-gradient(45deg, #F2AA4C, #4CF257, #4C94F2, #F24CE7, #F2AA4C);
@@ -137,3 +141,8 @@
     100% { background-position: 0 0; }
 }
 
+@media(max-width: 978px){
+    .sessionCard {
+        width:360px;
+    }
+}

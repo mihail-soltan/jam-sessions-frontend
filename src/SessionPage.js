@@ -61,11 +61,13 @@ export default function SessionPage({ loading, search, newData }) {
                     </div>
                   ))}
                 </div>
+                <div className="details">
                 <Link to="/">
                   <button class="glow-on-hover" type="button">
                     Go back
                   </button>
                 </Link>
+                </div>
               </div>
             </div>
           </>

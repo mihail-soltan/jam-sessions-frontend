@@ -8,6 +8,7 @@ body {
   margin-top: 100px;
   flex-direction: row;
   /* height: 50vh; */
+  /* flex-wrap:wrap; */
 }
 .footer {
   display: flex;
@@ -90,10 +91,22 @@ h1 {
 .city, user {
   font-size: 20px;
 }
-
-@media(max-width: 576px){
+.newsletter {
+  height: 30px;
+}
+.newsLetterForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+@media(max-width: 1200px ){
   .App {
+    flex-direction: column;
     justify-content: center;
-    width: 50%;
+    align-items: center;
+  }
+  .form {
+    margin: 0px 0px 20px 0px;
   }
 }

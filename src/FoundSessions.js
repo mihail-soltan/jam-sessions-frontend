@@ -84,11 +84,13 @@ export default function FoundSessions({ search, setSearch, loading, fullDate, da
               </div>
             ))}
             </div>
+            <div className="details">
             <Link to={`/jamsession/${session._id}`}>
             <button class="glow-on-hover" type="button">
               See Event Details
             </button>
             </Link>
+            </div>
           </div>
         </div>
       ))):

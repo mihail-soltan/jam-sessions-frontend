@@ -19,6 +19,7 @@ import UserSessions from "./UserSessions";
 import { AiFillTwitterSquare } from "react-icons/ai";
 import { FaTwitch } from "react-icons/fa";
 import { BsReddit } from "react-icons/bs";
+import { IoIosSend } from "react-icons/io";
 const genreAPI = "https://jam-sessions-backend.herokuapp.com/genres";
 const userAPI = "https://jam-sessions-backend.herokuapp.com/api/users/";
 const jamSessionAPI = "https://jam-sessions-backend.herokuapp.com/jamsessions/";
@@ -215,7 +216,7 @@ function App() {
           <div className="footerContact">
             <h6>Kurze Str. 10</h6>
             <h6>13585, Berlin</h6>
-            <h6>mihail.soltan@protonmail.ch</h6>
+            <h6>Tel: +4915254051183</h6>
           </div>
         </div>
         <div className="follow">
@@ -228,6 +229,11 @@ function App() {
         </div>
         <div className="footer">
           <h5>NEWSLETTER</h5>
+            <form className="newsLetterForm">
+              <input type="text" className="newsletter" placeholder="Enter Your Email"/>
+              
+              <IoIosSend style={{ width: "35px", height: "35px", cursor: "pointer"}}/>
+            </form>
         </div>
       </Footer>
     </>
