@@ -5,9 +5,14 @@
     flex-direction: column;
     height: 100vh;
 }
-
+.createjamsession h1 {
+    color: #F2AA4C;
+}
+.addressForm {
+    display: flex;
+    flex-direction: row;
+}
 .sessionForm {
-    width: 100%;
     height: 38px;
     background-color: #fff;
     border: #ccc;
@@ -18,8 +23,14 @@
     color: #333;
     background-color: #ffffff;
 }
+
+.name{
+    width: 600px;
+    margin: 0px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
 .sessionForm2 {
-    width: 50%;
     height: 38px;
     background-color: #fff;
     border: #ccc;
@@ -29,4 +40,14 @@
     font-size: 16px;
     color: #333;
     background-color: #ffffff;
+}
+.street {
+    margin-left: 0px;
+    margin-right: 5px;
+    width: 290px;
+}
+.plz {
+    margin-left: 5px;
+    margin-right: 0px;
+    width: 290px;
 }

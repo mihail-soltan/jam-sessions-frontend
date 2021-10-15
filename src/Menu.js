@@ -117,7 +117,8 @@ const ItemLink = styled(NavLink)`
 function HamburgerMenu() {
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
-  const {logout, isLoggedIn} = useContext(AuthContext)
+  const handleLogOut = () => {setClick(!click); logout()}
+  const {logout, isLoggedIn, authToken} = useContext(AuthContext)
    
   return (
     <>
@@ -149,13 +150,14 @@ function HamburgerMenu() {
             </ItemLink>
           </li>
           <li>
+            {!authToken ?
             <ItemLink onClick={handleClick} to="/login">
               Sign In
             </ItemLink>
-    
-            <ItemLink onClick={logout} to="/">
+            :
+            <ItemLink onClick={handleLogOut} to="/">
               Log Out
-            </ItemLink> 
+            </ItemLink> }
           </li>
         </List>
       </Navigation>

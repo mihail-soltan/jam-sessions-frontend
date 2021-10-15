@@ -120,27 +120,28 @@ export default function CreateJamSession({ options, users, me }) {
       <h1>Create a new jam session</h1>
       <form onSubmit={submit}>
         <input
-          className="sessionForm"
+          className="sessionForm name"
           onChange={handle}
           name="name"
           id="name"
           placeholder="name"
           type="text"
-        ></input>
-      
+        />
+      <div className="addressForm">
         <input
-          className="sessionForm2"
+          className="sessionForm2 street"
           onChange={handle}
           name="street"
           placeholder="Street/House Nr."
           type="text"
-        ></input>
+        />
         <input
-        className="sessionForm2"
+        className="sessionForm2 plz"
         onChange={handle}
         name="plz"
         placeholder="PLZ"
-        type="text"></input>
+        type="text"/>
+        </div>
         <select onChange={handle} name="city" className="select">
           <option className="city" selected>
             Choose City
@@ -192,7 +193,7 @@ export default function CreateJamSession({ options, users, me }) {
           name="date"
           placeholder="date"
           type="date"
-        ></input>
+        />
         <button className="select">Create Session</button>
       </form>
     </div>
