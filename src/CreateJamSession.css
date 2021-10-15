@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    
 }
 .createjamsession h1 {
     color: #F2AA4C;
@@ -11,6 +11,7 @@
 .addressForm {
     display: flex;
     flex-direction: row;
+    width: 610px;
 }
 .sessionForm {
     height: 38px;
@@ -26,6 +27,12 @@
 
 .name{
     width: 600px;
+    margin: 0px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+.city{
+    width: 610px;
     margin: 0px;
     padding: 5px;
     margin-bottom: 5px;
@@ -50,4 +57,22 @@
     margin-left: 5px;
     margin-right: 0px;
     width: 290px;
+}
+
+.createjamsession h4 {
+    color: #F2AA4C;
+    margin-bottom: 0px;
+}
+.createjamsession button:hover {
+    cursor: pointer;
+}
+.createjamsession button:active {
+    background: linear-gradient(0.25turn, #333, #ebf8e1, #F2AA4C);
+
+    margin: 5px 0px 5px 0px;
+} 
+@media(max-width:690px){
+    .createjamsession{
+        width: 400px;
+    }
 }
