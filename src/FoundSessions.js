@@ -74,8 +74,8 @@ export default function FoundSessions({ search, setSearch, loading, fullDate, da
           <div className="sessionMain">
             <h4 key={uuidv4()}>{session.description} </h4>
           </div>
-          <h6 key={uuidv4()}>{session.street} </h6>
-          <h6 key={uuidv4()}>{session.plz} </h6>
+          <h6 className="cardAddress" key={uuidv4()}>{session.street} </h6>
+          <h6 className="cardAddress" key={uuidv4()}>{session.plz} </h6>
           <div className="cardBottom">
             <div className="genreLabels">
             {session.genres.map((genre) => (

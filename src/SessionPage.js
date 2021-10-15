@@ -51,8 +51,8 @@ export default function SessionPage({ loading, search, newData }) {
                 <h4 key={uuidv4()}>{s.description} </h4>
               </div>
             
-              <h6 key={uuidv4()}>{s.street} </h6>
-              <h6 key={uuidv4()}>{s.plz} </h6>
+              <h6 className="cardAddress" key={uuidv4()}>{s.street} </h6>
+              <h6 className="cardAddress" key={uuidv4()}>{s.plz} </h6>
               <div className="cardBottom">
                 <div className="genreLabels">
                   {s.genres.map((genre) => (

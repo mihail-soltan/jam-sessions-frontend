@@ -1,3 +1,4 @@
+import './App.css'
 
 const footerStyle = {
   backgroundColor: "#212121",
@@ -19,13 +20,14 @@ const footerStyle = {
 const phantomStyle = {
   display: "block",
   // padding: "20px",
+  marginTop: "100px",
   height: "60px",
   width: "100%",
 };
 
 export default function Footer({ children }) {
   return (
-    <div>
+    <div >
       <div style={phantomStyle} />
       <div style={footerStyle}>{children}</div>
     </div>

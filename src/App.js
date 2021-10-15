@@ -16,6 +16,7 @@ import Profile from "./Profile";
 import Tickets from "./Tickets";
 import { AuthContext } from "./AuthContext";
 import UserSessions from "./UserSessions";
+import { IconContext } from "react-icons";
 import { AiFillTwitterSquare } from "react-icons/ai";
 import { FaTwitch } from "react-icons/fa";
 import { BsReddit } from "react-icons/bs";
@@ -140,7 +141,7 @@ function App() {
         <Route exact path="/">
           <div className="App">
             <form className="form">
-              <h1>Search Sessions</h1>
+              <h1 className="search">Search Sessions</h1>
               <select onChange={handle} name="city" className="select">
                 <option className="city" defaultValue>
                   Choose City
@@ -231,8 +232,9 @@ function App() {
           <h5>NEWSLETTER</h5>
             <form className="newsLetterForm">
               <input type="text" className="newsletter" placeholder="Enter Your Email"/>
-              
-              <IoIosSend style={{ width: "35px", height: "35px", cursor: "pointer"}}/>
+              <IconContext.Provider value={{ className: 'react-icons' }}>
+              <IoIosSend  value={{ className: 'react-icons' }}/>
+              </IconContext.Provider>
             </form>
         </div>
       </Footer>
