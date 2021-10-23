@@ -142,15 +142,15 @@ function App() {
           <div className="App">
             <form className="form">
               <h1 className="search">Search Sessions</h1>
-              <select onChange={handle} name="city" className="select">
-                <option className="city" defaultValue>
+              <select onChange={handle} name="city" className="searchCity" >
+                <option defaultValue>
                   Choose City
                 </option>
                 {cities.map((city) => (
-                  <option className="city">{city.name}</option>
+                  <option>{city.name}</option>
                 ))}
               </select>
-              <select onChange={handle} name="experience" className="select">
+              <select onChange={handle} className="searchExp" name="experience" >
                 <option defaultValue>Choose your level</option>
                 <option>beginner</option>
                 <option>intermediate</option>
