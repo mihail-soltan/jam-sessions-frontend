@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { css } from "@emotion/react";
 import SyncLoader from "react-spinners/SyncLoader";
 import "./SessionPage.css";
@@ -15,6 +15,7 @@ function uuidv4() {
 
 export default function SessionPage({ loading, search, newData }) {
   console.log(search);
+
   const jamSessionID = useParams();
   const filteredSession = search.filter(
     (session) => session._id === jamSessionID.id
@@ -50,9 +51,12 @@ export default function SessionPage({ loading, search, newData }) {
               <div className="sessionMain">
                 <h4 key={uuidv4()}>{s.description} </h4>
               </div>
-            
+              <form>
+                <textarea rows="4" cols="50" placeholder="Type your message" />
+              </form>
               <h6 className="cardAddress" key={uuidv4()}>{s.street} </h6>
               <h6 className="cardAddress" key={uuidv4()}>{s.plz} </h6>
+              
               <div className="cardBottom">
                 <div className="genreLabels">
                   {s.genres.map((genre) => (

@@ -89,9 +89,40 @@ body {
   word-break: normal;
 }
 
-.city, user {
+.city {
   font-size: 20px;
 }
+.searchCity {
+  height: 38px;
+  background-color: #fff;
+  border: #ccc;
+  border-radius: 4px;
+  margin: 5px 5px 5px 0px; 
+  padding: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #ffffff;
+  width: 188px;
+}
+.searchExp {
+  height: 38px;
+  background-color: #fff;
+  border: #ccc;
+  border-radius: 4px;
+  margin: 5px 0px 5px 5px; 
+  padding: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #ffffff;
+  width: 188px;
+}
+form button:hover {
+  cursor: pointer;
+}
+form button:active {
+  background: linear-gradient(0.25turn, #333, #ebf8e1, #F2AA4C);
+}
+
 .newsletter {
   height: 30px;
 }
@@ -127,5 +158,12 @@ body {
   }
   .search {
     text-align: center;
+  }
+  .searchCity {
+    width: 100%;
+  }
+  .searchExp {
+    width: 100%;
+    margin-left: 0px;
   }
 }
