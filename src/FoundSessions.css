@@ -3,8 +3,6 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    /* height: 100vh; */
-    /* width: 100%; */
 }
 .results {
     display: flex;
@@ -17,7 +15,6 @@
 }
 .ticketCard {
     display: flex;
-    /* width: 25%; */
     flex-direction: column;
     justify-content:flex-start;
     align-items: flex-start;
@@ -31,9 +28,6 @@
     width: 35vw;
     background: #FDE5C8;
     border: 5px solid #353535;
-    /* border-radius: 4px; */
-    /* border-image-slice: 1; */
-    /* border-image-source: linear-gradient(to right, #F2AA4C, #4CF257, #4C94F2, #F24CE7, #F2AA4C); */
     margin: 5px 10px;
     padding: 10px;
 }
@@ -77,7 +71,6 @@
 }
 .genre {
     display: flex;
-    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
     background-color: gray;

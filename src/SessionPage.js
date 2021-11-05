@@ -13,14 +13,13 @@ function uuidv4() {
   );
 }
 
-export default function SessionPage({ loading, search, newData }) {
+export default function SessionPage({ loading, search, newData, authToken }) {
   console.log(search);
 
   const jamSessionID = useParams();
   const filteredSession = search.filter(
     (session) => session._id === jamSessionID.id
   );
-  //   const [showSession] = filteredSession;
   console.log(jamSessionID);
   console.log(filteredSession);
   //   console.log(showSession);
@@ -38,7 +37,7 @@ export default function SessionPage({ loading, search, newData }) {
         {filteredSession.map((s) => (
           <>
             {" "}
-            <div className="sessionCard">
+            <div className="sessionCard1">
               <div className="sessionTitle">
                 {" "}
                 <h3 key={uuidv4()}>
@@ -51,9 +50,12 @@ export default function SessionPage({ loading, search, newData }) {
               <div className="sessionMain">
                 <h4 key={uuidv4()}>{s.description} </h4>
               </div>
+              {authToken?
               <form>
                 <textarea rows="4" cols="50" placeholder="Type your message" />
+                <button>Send Message</button>
               </form>
+              :<h1>Please sign in to send a message</h1>}
               <h6 className="cardAddress" key={uuidv4()}>{s.street} </h6>
               <h6 className="cardAddress" key={uuidv4()}>{s.plz} </h6>
               
