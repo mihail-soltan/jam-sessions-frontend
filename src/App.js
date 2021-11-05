@@ -142,15 +142,13 @@ function App() {
           <div className="App">
             <form className="form">
               <h1 className="search">Search Sessions</h1>
-              <select onChange={handle} name="city" className="searchCity" >
-                <option defaultValue>
-                  Choose City
-                </option>
+              <select onChange={handle} name="city" className="searchCity">
+                <option defaultValue>Choose City</option>
                 {cities.map((city) => (
                   <option>{city.name}</option>
                 ))}
               </select>
-              <select onChange={handle} className="searchExp" name="experience" >
+              <select onChange={handle} className="searchExp" name="experience">
                 <option defaultValue>Choose your level</option>
                 <option>beginner</option>
                 <option>intermediate</option>
@@ -184,6 +182,43 @@ function App() {
               data={data}
             />
             <Tickets tickets={tickets} setTickets={setTickets} />
+            <Footer>
+              <div className="footer">
+                <h5>Contact</h5>
+                <div className="footerContact">
+                  <h6>Kurze Str. 10</h6>
+                  <h6>13585, Berlin</h6>
+                  <h6>Tel: +4915254051183</h6>
+                </div>
+              </div>
+              <div className="follow">
+                <h5>Follow Us:</h5>
+                <div className="footerIcons">
+                  <AiFillTwitterSquare
+                    style={{ width: "2em", height: "2em", margin: "5px" }}
+                  />
+                  <FaTwitch
+                    style={{ width: "2em", height: "2em", margin: "5px" }}
+                  />
+                  <BsReddit
+                    style={{ width: "2em", height: "2em", margin: "5px" }}
+                  />
+                </div>
+              </div>
+              <div className="footer">
+                <h5>NEWSLETTER</h5>
+                <form className="newsLetterForm">
+                  <input
+                    type="text"
+                    className="newsletter"
+                    placeholder="Enter Your Email"
+                  />
+                  <IconContext.Provider value={{ className: "react-icons" }}>
+                    <IoIosSend value={{ className: "react-icons" }} />
+                  </IconContext.Provider>
+                </form>
+              </div>
+            </Footer>
           </div>
         </Route>
         <Route path="/createsession">
@@ -205,39 +240,12 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/jamsession/:id">
-          <SessionPage loading={loading} search={search} />
+          <SessionPage loading={loading} search={search} authToken={authToken}/>
         </Route>
         <Route path="/profile/sessions">
           <UserSessions loading={loading} search={search} />
         </Route>
       </Switch>
-      <Footer>
-        <div className="footer">
-          <h5>Contact</h5>
-          <div className="footerContact">
-            <h6>Kurze Str. 10</h6>
-            <h6>13585, Berlin</h6>
-            <h6>Tel: +4915254051183</h6>
-          </div>
-        </div>
-        <div className="follow">
-          <h5>Follow Us:</h5>
-          <div className="footerIcons">
-            <AiFillTwitterSquare style={{ width: "2em", height: "2em", margin: "5px" }} />
-            <FaTwitch style={{ width: "2em", height: "2em", margin: "5px" }} />
-            <BsReddit style={{ width: "2em", height: "2em", margin: "5px" }} />
-          </div>
-        </div>
-        <div className="footer">
-          <h5>NEWSLETTER</h5>
-            <form className="newsLetterForm">
-              <input type="text" className="newsletter" placeholder="Enter Your Email"/>
-              <IconContext.Provider value={{ className: 'react-icons' }}>
-              <IoIosSend  value={{ className: 'react-icons' }}/>
-              </IconContext.Provider>
-            </form>
-        </div>
-      </Footer>
     </>
   );
 }
