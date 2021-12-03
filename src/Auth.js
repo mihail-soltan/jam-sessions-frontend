@@ -19,14 +19,14 @@ export default function Auth() {
   return (
       <div className="auth">
         <h1>Login</h1>
-        <div>
+        <div className="authInputs">
           <input onChange={handleChange} className="loginform" type="text"  name="email" placeholder="email"></input>
-          <input onChange={handleChange} className="loginform" type="password" name="password" minLength="8" required ></input>
-          <button className="loginform login"  onClick={() => login(formData)}>
-            Login
+          <input onChange={handleChange} className="loginform" type="password" name="password" placeholder="password" minLength="8" required ></input>
+          <button className="login"  onClick={() => login(formData)}>
+            LOG IN
           </button>
          </div>
-        <h5>You don't have an account? <Link to="/signup">Sign Up Here</Link> </h5>
+        <h5>You don't have an account? <Link to="/signup" style={{ color: "white"}}>Sign Up Here</Link> </h5>
       </div>
   );
 }

@@ -195,13 +195,13 @@ function App() {
                 <h5>Follow Us:</h5>
                 <div className="footerIcons">
                   <AiFillTwitterSquare
-                    style={{ width: "2em", height: "2em", margin: "5px" }}
+                    style={{ width: "2em", height: "2em", margin: "5px", cursor: "pointer", color: "#00acee" }}
                   />
                   <FaTwitch
-                    style={{ width: "2em", height: "2em", margin: "5px" }}
+                    style={{ width: "2em", height: "2em", margin: "5px", cursor: "pointer", color: "#5865F2" }}
                   />
                   <BsReddit
-                    style={{ width: "2em", height: "2em", margin: "5px" }}
+                    style={{ width: "2em", height: "2em", margin: "5px", cursor: "pointer", color: "#ff4500" }}
                   />
                 </div>
               </div>
