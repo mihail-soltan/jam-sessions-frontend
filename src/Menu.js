@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AuthContext } from './AuthContext';
-import { Redirect } from "react-router";
+
 const COLORS = {
   primaryDark: "#101820FF",
   primaryLight: "#F2AA4C",
@@ -92,9 +92,11 @@ const List = styled.ul`
   width: 100%;
 `;
 const ItemLink = styled(NavLink)`
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
   display: inline-block;
   font-size: 3rem;
   font-weight: 300;
+  font-family: 'Ubuntu', sans-serif;
   text-decoration: none;
   color: ${COLORS.primaryLight};
   padding: 1rem 2rem;

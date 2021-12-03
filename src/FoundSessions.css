@@ -3,6 +3,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    width: 40vw;
 }
 .results {
     display: flex;
@@ -18,7 +19,7 @@
     flex-direction: column;
     justify-content:flex-start;
     align-items: flex-start;
-    margin-right: 50px;
+    /* margin-right: 50px; */
 }
 .sessionCard {
     display: flex;

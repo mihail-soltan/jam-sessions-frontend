@@ -37,6 +37,7 @@ export default function SessionPage({ loading, search, newData, authToken }) {
         {filteredSession.map((s) => (
           <>
             {" "}
+            {/* <h3>Created by {s.createdBy}</h3> */}
             <div className="sessionCard1">
               <div className="sessionTitle">
                 {" "}
