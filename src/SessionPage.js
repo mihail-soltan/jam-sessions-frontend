@@ -4,6 +4,7 @@ import { css } from "@emotion/react";
 import SyncLoader from "react-spinners/SyncLoader";
 import "./SessionPage.css";
 import { Link } from "react-router-dom";
+import { IoIosSend } from "react-icons/io";
 function uuidv4() {
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
     (
@@ -53,9 +54,11 @@ export default function SessionPage({ loading, search, newData, authToken }) {
               </div>
               {authToken?
               <form>
-                <textarea rows="4" cols="50" placeholder="Type your message" />
-                <button>Send Message</button>
+                <textarea className="messageForm" rows="4" cols="50" placeholder="Type your message" />
+                <button className="sendMessagebtn">Send Message</button>
+                {/* <IoIosSend value={{ className: "react-icons" }} /> */}
               </form>
+
               :<h1>Please sign in to send a message</h1>}
               <h6 className="cardAddress" key={uuidv4()}>{s.street} </h6>
               <h6 className="cardAddress" key={uuidv4()}>{s.plz} </h6>
