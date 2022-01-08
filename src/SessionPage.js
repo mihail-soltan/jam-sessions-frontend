@@ -14,8 +14,9 @@ function uuidv4() {
   );
 }
 
-export default function SessionPage({ loading, search, newData, authToken }) {
-  console.log(search);
+
+export default function SessionPage({ loading, search, newData, authToken, me }) {
+
 
   const jamSessionID = useParams();
   const filteredSession = search.filter(
@@ -31,7 +32,10 @@ export default function SessionPage({ loading, search, newData, authToken }) {
     margin: 0 auto;
     border-color: red;
   `;
-
+    console.log(me)
+  // const participate = () => {
+  //   filteredSession
+  // }
   return search ? (
     <>
       <div className="sessionPage">
@@ -52,17 +56,34 @@ export default function SessionPage({ loading, search, newData, authToken }) {
               <div className="sessionMain">
                 <h4 key={uuidv4()}>{s.description} </h4>
               </div>
-              {authToken?
-              <form>
-                <textarea className="messageForm" rows="4" cols="50" placeholder="Type your message" />
-                <button className="sendMessagebtn">Send Message</button>
-                {/* <IoIosSend value={{ className: "react-icons" }} /> */}
-              </form>
-
-              :<h1>Please sign in to send a message</h1>}
-              <h6 className="cardAddress" key={uuidv4()}>{s.street} </h6>
-              <h6 className="cardAddress" key={uuidv4()}>{s.plz} </h6>
-              
+              {authToken ? (
+                <form>
+                  <textarea
+                    className="messageForm"
+                    rows="4"
+                    cols="50"
+                    placeholder="Type your message"
+                  />
+                  <button className="sendMessagebtn">Send Message</button>
+                  {/* <IoIosSend value={{ className: "react-icons" }} /> */}
+                </form>
+              ) : (
+                <h1>Please sign in to send a message</h1>
+              )}
+              <div className="sessionDetails">
+              <div className="sessionAddress">
+                <h6 className="cardAddress" key={uuidv4()}>
+                  {s.street}
+                </h6>
+                <h6 className="cardAddress" key={uuidv4()}>
+                  {s.plz}
+                </h6>
+                </div>
+                <div className="participants">
+                <h6> Participants: {s.members.length}/4</h6>
+                <button className="participate-btn">Participate</button>
+                </div>
+              </div>
               <div className="cardBottom">
                 <div className="genreLabels">
                   {s.genres.map((genre) => (
@@ -72,11 +93,11 @@ export default function SessionPage({ loading, search, newData, authToken }) {
                   ))}
                 </div>
                 <div className="details">
-                <Link to="/">
-                  <button class="glow-on-hover" type="button">
-                    Go back
-                  </button>
-                </Link>
+                  <Link to="/">
+                    <button class="glow-on-hover" type="button">
+                      Go back
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

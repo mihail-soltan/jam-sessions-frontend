@@ -74,6 +74,7 @@ function App() {
       .get(myProfile, { headers: { Authorization: `Bearer ${authToken}` } })
       .then((res) => {
         setMe([res.data]);
+        
       })
 
       .catch((error) => {
@@ -133,7 +134,7 @@ function App() {
 
     setData(newData);
   }
-
+  console.log(me)
   return (
     <>
       <Menu />
@@ -195,13 +196,31 @@ function App() {
                 <h5>Follow Us:</h5>
                 <div className="footerIcons">
                   <AiFillTwitterSquare
-                    style={{ width: "2em", height: "2em", margin: "5px", cursor: "pointer", color: "#00acee" }}
+                    style={{
+                      width: "2em",
+                      height: "2em",
+                      margin: "5px",
+                      cursor: "pointer",
+                      color: "#00acee",
+                    }}
                   />
                   <FaTwitch
-                    style={{ width: "2em", height: "2em", margin: "5px", cursor: "pointer", color: "#5865F2" }}
+                    style={{
+                      width: "2em",
+                      height: "2em",
+                      margin: "5px",
+                      cursor: "pointer",
+                      color: "#5865F2",
+                    }}
                   />
                   <BsReddit
-                    style={{ width: "2em", height: "2em", margin: "5px", cursor: "pointer", color: "#ff4500" }}
+                    style={{
+                      width: "2em",
+                      height: "2em",
+                      margin: "5px",
+                      cursor: "pointer",
+                      color: "#ff4500",
+                    }}
                   />
                 </div>
               </div>
@@ -240,7 +259,12 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/jamsession/:id">
-          <SessionPage loading={loading} search={search} authToken={authToken}/>
+          <SessionPage
+            loading={loading}
+            search={search}
+            authToken={authToken}
+            me={me}
+          />
         </Route>
         <Route path="/profile/sessions">
           <UserSessions loading={loading} search={search} />
