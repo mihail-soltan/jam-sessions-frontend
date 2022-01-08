@@ -48,4 +48,38 @@
     background: #000;
     border-left: none;
     color: white;
+    cursor: pointer;
+}   
+
+.sessionDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+.participants {
+    display: flex;
+    flex-direction: column;
+}
+
+.participate-btn {
+    background: #fff;
+    border-radius: 0px;
+    color: #000;
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+    cursor: pointer;
+    transition: 0.3s;
+}   
+.participate-btn:hover {
+    background: linear-gradient(0.25turn, #333, #ebf8e1, #F2AA4C);
+}
+.participate-btn:active {
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
+    border-bottom:  3px solid #fff;
+    border-right:  3px solid #fff;
 }

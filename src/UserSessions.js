@@ -59,11 +59,6 @@ export default function UserSessions({ me, mySessions }) {
                     </div>
                   ))}
                 </div>
-                <Link to="/">
-                  <button class="glow-on-hover" type="button">
-                    Go back
-                  </button>
-                </Link>
               </div>
             </div>
           </>
