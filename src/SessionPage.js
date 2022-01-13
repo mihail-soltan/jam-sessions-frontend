@@ -36,6 +36,26 @@ export default function SessionPage({ loading, search, newData, authToken, me })
   // const participate = () => {
   //   filteredSession
   // }
+
+  const participate = (e) => {
+    console.log(e.target)
+  }
+
+  const [participateBtn, setParticipateBtn] = useState({
+    className: 'participate-Disabled',
+    disabled: true
+})
+
+console.log(participateBtn.className)
+  useEffect(() =>{
+    if(authToken){
+      setParticipateBtn({
+        className: 'participate-btn',
+        disabled: false,
+    })
+    }
+  }, [])
+
   return search ? (
     <>
       <div className="sessionPage">
@@ -81,7 +101,7 @@ export default function SessionPage({ loading, search, newData, authToken, me })
                 </div>
                 <div className="participants">
                 <h6> Participants: {s.members.length}/4</h6>
-                <button className="participate-btn">Participate</button>
+                <button disabled={participateBtn.disabled}  onClick={participate} className={participateBtn.className}>Participate</button>
                 </div>
               </div>
               <div className="cardBottom">

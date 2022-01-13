@@ -83,3 +83,12 @@
     border-bottom:  3px solid #fff;
     border-right:  3px solid #fff;
 }
+.participate-Disabled {
+    background: #D3D3D3;
+    border-radius: 0px;
+    color: #000;
+    border-top: 3px solid #fff;
+    border-left: 3px solid #fff;
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+}
